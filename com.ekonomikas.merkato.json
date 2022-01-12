@@ -48,8 +48,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/sheep-farm/merkato.git",
-                    "commit" : "873415c0572333af963ed73b7f262d7034e82b09"
+                    "url" : "https://github.com/flathub/com.ekonomikas.merkato.git",
+                    "commit" : "ffba29612b5b863c127756e8292dc9669c50b7a1"
                 }
             ]
         }
