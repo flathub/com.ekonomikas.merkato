@@ -30,7 +30,7 @@
                 {
                     "type" : "git",
                     "url" : "https://github.com/sheep-farm/merkato.git",
-                    "commit" : "8db94efa199b981823c038a78ec32bf10eb6cfb1"
+                    "commit" : "86484d188356cb8f0cb2cb42f2ccff0780d86586"
                 }
             ]
         }
