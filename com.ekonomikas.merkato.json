@@ -1,7 +1,7 @@
 {
     "app-id" : "com.ekonomikas.merkato",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "43",
+    "runtime-version" : "45",
     "sdk" : "org.gnome.Sdk",
     "command" : "com.ekonomikas.merkato",
     "finish-args" : [
@@ -23,6 +23,7 @@
         "*.a"
     ],
     "modules" : [
+        "shared-modules/libsoup/libsoup-2.4.json",
         {
             "name" : "com.ekonomikas.merkato",
             "buildsystem" : "meson",
