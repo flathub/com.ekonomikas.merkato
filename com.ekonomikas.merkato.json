@@ -1,14 +1,16 @@
 {
-    "app-id" : "com.ekonomikas.merkato",
-    "runtime" : "org.gnome.Platform",
-    "runtime-version" : "45",
+    "id" : "com.github.sheepfarm.merkato",
+    "runtime" : "org.gnome.Sdk",
+    "runtime-version" : "47",
     "sdk" : "org.gnome.Sdk",
-    "command" : "com.ekonomikas.merkato",
+    "command" : "merkato",
     "finish-args" : [
         "--share=network",
         "--share=ipc",
         "--socket=fallback-x11",
-        "--socket=wayland"
+        "--device=dri",
+        "--socket=wayland",
+        "--filesystem=xdg-config/environment.d:ro"
     ],
     "cleanup" : [
         "/include",
@@ -18,22 +20,56 @@
         "/share/gtk-doc",
         "/share/man",
         "/share/pkgconfig",
-        "/share/vala",
         "*.la",
         "*.a"
     ],
     "modules" : [
-        "shared-modules/libsoup/libsoup-2.4.json",
+        {
+	  "name": "python-dependencies",
+	  "buildsystem": "simple",
+	  "build-options": {
+	    "build-args": [
+	      "--share=network"
+	    ]
+	  },
+	  "build-commands": [
+	    "pip3 install --prefix=/app --no-cache-dir pandas",
+	    "pip3 install --prefix=/app --no-cache-dir requests",
+	    "pip3 install --prefix=/app --no-cache-dir requests-futures",
+	    "pip3 install --prefix=/app --no-cache-dir yahooquery"
+	  ]
+	},
+        {
+            "name" : "blueprint-compiler",
+            "buildsystem" : "meson",
+            "cleanup" : [
+                "*"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
+                    "tag" : "v0.14.0"
+                }
+            ]
+        },
         {
             "name" : "com.ekonomikas.merkato",
+            "builddir" : true,
             "buildsystem" : "meson",
             "sources" : [
                 {
                     "type" : "git",
                     "url" : "https://github.com/sheep-farm/merkato.git",
-                    "commit" : "d9acc066f800ec997ae0e4167b6dc1167715b53f"
+                    "commit" : ""
                 }
+            ],
+            "config-opts" : [
+                "--libdir=lib"
             ]
         }
-    ]
+    ],
+    "build-options" : {
+        "env" : {        }
+    }
 }
