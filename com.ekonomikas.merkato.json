@@ -1,15 +1,19 @@
 {
     "app-id" : "com.ekonomikas.merkato",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "45",
+    "runtime-version" : "42",
     "sdk" : "org.gnome.Sdk",
     "command" : "com.ekonomikas.merkato",
-    "finish-args" : [
-        "--share=network",
-        "--share=ipc",
-        "--socket=fallback-x11",
-        "--socket=wayland"
-    ],
+"finish-args": [
+  "--share=network",
+  "--share=ipc",
+  "--socket=fallback-x11",
+  "--socket=wayland",
+  "--device=dri",
+  "--own-name=com.ekonomikas.merkato",
+  "--talk-name=org.freedesktop.portal.Desktop",
+  "--talk-name=org.freedesktop.portal.Documents"
+],
     "cleanup" : [
         "/include",
         "/lib/pkgconfig",
@@ -23,7 +27,6 @@
         "*.a"
     ],
     "modules" : [
-        "shared-modules/libsoup/libsoup-2.4.json",
         {
             "name" : "com.ekonomikas.merkato",
             "buildsystem" : "meson",
@@ -31,9 +34,15 @@
                 {
                     "type" : "git",
                     "url" : "https://github.com/sheep-farm/merkato.git",
-                    "commit" : "d9acc066f800ec997ae0e4167b6dc1167715b53f"
+                    "commit" : "3ee40051fe8081208030c4f4ddbdcde067497c7a"
                 }
+            ],
+            "config-opts" : [
+                "--libdir=lib"
             ]
         }
-    ]
+    ],
+    "build-options" : {
+        "env" : {        }
+    }
 }
