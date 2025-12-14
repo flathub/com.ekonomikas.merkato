@@ -1,7 +1,7 @@
 {
   "app-id": "com.ekonomikas.merkato",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "48",
+  "runtime-version": "49",
   "sdk": "org.gnome.Sdk",
   "command": "merkato",
   "build-options": {
@@ -26,25 +26,11 @@
     "/share/vala",
     "*.la",
     "*.a",
-    "/lib/python3.12/site-packages/**/tests",
-    "/lib/python3.12/site-packages/**/test",
-    "/lib/python3.12/site-packages/**/__pycache__",
-    "/lib/python3.12/site-packages/**/examples",
-    "*.pyc"
+    "/lib/python3.*/site-packages/**/tests",
+    "/lib/python3.*/site-packages/**/test",
+    "/lib/python3.*/site-packages/**/examples"
   ],
   "modules": [
-    {
-      "name": "blueprint-compiler",
-      "buildsystem": "meson",
-      "cleanup": ["*"],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
-          "tag": "v0.18.0"
-        }
-      ]
-    },
     {
       "name": "com.ekonomikas.merkato",
       "builddir": true,
