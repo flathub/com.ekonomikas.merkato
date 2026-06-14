@@ -22,6 +22,3 @@ git clone git@github.com:flathub/com.ekonomikas.merkato.git
 flatpak run org.flatpak.Builder build-dir --user --ccache --force-clean --install com.ekonomikas.merkato.json
 ```
 
----
-
-**Technologies**: GNOME, GTK4, Libadwaita, Python
