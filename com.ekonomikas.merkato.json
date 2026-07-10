@@ -1,12 +1,19 @@
 {
   "app-id": "com.ekonomikas.merkato",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "48",
+  "runtime-version": "49",
   "sdk": "org.gnome.Sdk",
+  "sdk-extensions": [
+    "org.freedesktop.Sdk.Extension.rust-stable"
+  ],
   "command": "merkato",
   "build-options": {
+    "append-path": "/usr/lib/sdk/rust-stable/bin",
     "strip": true,
-    "no-debuginfo": true
+    "no-debuginfo": true,
+    "env": {
+      "CARGO_NET_OFFLINE": "true"
+    }
   },
   "finish-args": [
     "--share=network",
@@ -34,18 +41,6 @@
   ],
   "modules": [
     {
-      "name": "blueprint-compiler",
-      "buildsystem": "meson",
-      "cleanup": ["*"],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
-          "tag": "v0.18.0"
-        }
-      ]
-    },
-    {
       "name": "com.ekonomikas.merkato",
       "builddir": true,
       "buildsystem": "meson",
@@ -54,7 +49,16 @@
         {
           "type": "git",
           "url": "https://github.com/sheep-farm/merkato.git",
-          "commit": "72588618c9f2ce22176ec0556ba1d78adafc2ff9"
+          "tag": "v0.3.0",
+          "commit": "540543c207bd4e1e107dabcdebc08ab2e4757a29"
+        },
+        "cargo-sources.json",
+        {
+          "type": "shell",
+          "commands": [
+            "mkdir -p .cargo",
+            "cp -vf cargo/config .cargo/config.toml"
+          ]
         }
       ]
     }
